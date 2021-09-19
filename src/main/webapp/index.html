@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>jaxonne</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="p-5 mb-4 bg-light rounded-3">
+                    <div class="text-center">
+                        <h1 class="display-4 fw-bold mb-4">jaxonne</h1>
+                        <h6 class="text-muted text-monospace">Cuadrante de multiplicaciones dinámico AJAX</h6>
+                        <h6 class="text-muted text-monospace">Procesamiento en entorno servidor con servlet</h6>
+                        <h6 class="text-muted text-monospace">Respuesta html en bloque</h6>
+                        <h6 class="text-muted text-monospace">Con formulario generador de tabla. Petición AJAX con jQuery.</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-4 mx-auto">
+                    <form class="mt-4">
+                        <div class="form-group form-row">
+                            <label for="ancho">Ancho: </label>
+                            <input type="text" id="ancho" name="ancho" value="10" class="form-control" placeholder="Introduce un número del 1 al 30" />
+                        </div>
+                        <div class="form-group form-row mt-2">
+                            <label for="alto">Alto: </label>
+                            <input type="text"  id="alto" name="alto" value="10" class="form-control" placeholder="Introduce un número del 1 al 30" />
+                        </div>
+                        <input class="btn btn-primary mt-4" type="submit" value="Enviar" name="submit" id="enviar" />
+                        <input class="btn btn-danger mt-4" type="submit" value="Borrar" name="submit" id="borrar" />
+                    </form>
+                </div>
+            </div>
+            <div id="tabla"></div>
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#enviar").click(function () {
+                    alto = $("#alto").val();
+                    ancho = $("#ancho").val();
+                    $.ajax({
+                        url: "/jaxonne/control?alto=" + alto + "&ancho=" + ancho,
+                        type: "GET",
+                        success: function (source) {
+                            $("#tabla").html(source);
+                        }
+                    });
+                    return false;
+                });
+                $("#enviar").click(function () {
+                    $("#tabla").empty();
+                });
+            })
+        </script>
+    </body>
+</html>
