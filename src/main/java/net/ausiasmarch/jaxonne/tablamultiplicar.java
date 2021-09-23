@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class tablamultiplicar extends HttpServlet {
-
+        
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -25,19 +25,19 @@ public class tablamultiplicar extends HttpServlet {
                 out.print("</div>");
                 out.print("</div>");
             } else {
-                out.println("<table class=\"table table-bordered table-success table-striped mx-auto mt-5\" style=\"width: 500px;\" id=\"tabla\">");
+                out.print("<table class=\"table table-bordered table-success table-striped mx-auto mt-5\" style=\"width: 500px;\" id=\"tabla\">");
                 Integer i, j;
                 for (i = 1; i <= alto; i++) {
-                    out.println("<tr>");
+                    out.print("<tr>");
                     for (j = 1; j <= ancho; j++) {
-                        out.println("<td class=\"text-center\">");
+                        out.print("<td class=\"text-center\">");
                         Integer resultado = i * j;
                         out.println(resultado.toString());
-                        out.println("</td>");
+                        out.print("</td>");
                     }
-                    out.println("</tr>");
+                    out.print("</tr>");
                 }
-                out.println("</table>");
+                out.print("</table>");
             }
         }
     }
